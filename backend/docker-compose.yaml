@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: etkinlik-tech
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    restart: unless-stopped
+networks:
+  default:

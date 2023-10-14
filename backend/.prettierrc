@@ -1,0 +1,19 @@
+{
+  "singleQuote": true,
+  "useTabs": false,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"],
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.json", "*.html", "*.yaml", "*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
