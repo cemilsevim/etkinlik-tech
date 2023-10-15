@@ -40,4 +40,13 @@ export class EventFeedbacksService implements IEventFeedbacksService {
 
         return feedbacks;
     }
+
+    async listFeedbacksByUserId(userId: number): Promise<EventFeedbacks[]> {
+        const feedbacks = await this.eventFeedbacksRepository.find({
+            where: { userId },
+            relations: ['event'],
+        });
+
+        return feedbacks;
+    }
 }

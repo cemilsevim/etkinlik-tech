@@ -75,4 +75,15 @@ export class EventParticipantsService implements IEventParticipantsService {
 
         return participant;
     }
+
+    async listParticipantsByUserId(
+        userId: number,
+    ): Promise<EventParticipants[]> {
+        const participant = await this.eventParticipantsRepository.find({
+            where: { userId },
+            relations: ['event'],
+        });
+
+        return participant;
+    }
 }

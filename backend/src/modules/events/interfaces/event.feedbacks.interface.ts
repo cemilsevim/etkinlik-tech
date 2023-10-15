@@ -8,4 +8,5 @@ export interface IEventFeedbacksService {
         userId: number,
     ): Promise<EventFeedbacks>;
     listFeedbacksByEventId(eventId: number): Promise<EventFeedbacks[]>;
+    listFeedbacksByUserId(userId: number): Promise<EventFeedbacks[]>;
 }

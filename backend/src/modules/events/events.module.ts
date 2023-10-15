@@ -16,5 +16,6 @@ import { EventFeedbacksService } from './services/event.feedbacks.service';
     ],
     providers: [EventsService, EventParticipantsService, EventFeedbacksService],
     controllers: [EventsController],
+    exports: [EventsService, EventParticipantsService, EventFeedbacksService],
 })
 export class EventsModule {}

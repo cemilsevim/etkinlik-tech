@@ -14,4 +14,5 @@ export interface IEventParticipantsService {
         eventId: number,
         userId: number,
     ): Promise<EventParticipants>;
+    listParticipantsByUserId(userId: number): Promise<EventParticipants[]>;
 }
