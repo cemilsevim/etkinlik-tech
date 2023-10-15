@@ -10,6 +10,7 @@ import { LoggerModule } from './common/modules/logger/logger.module';
 import { JwtModule } from '@nestjs/jwt';
 import { EventParticipants } from './modules/events/entities/event.participants.entity';
 import { EventFeedbacks } from './modules/events/entities/event.feedbacks.entity';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @Module({
     imports: [
@@ -52,6 +53,7 @@ import { EventFeedbacks } from './modules/events/entities/event.feedbacks.entity
         EventsModule,
         UsersModule,
         AuthModule,
+        ProfileModule,
     ],
     controllers: [],
     providers: [],
