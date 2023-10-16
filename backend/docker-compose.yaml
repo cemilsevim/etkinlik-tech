@@ -1,7 +1,24 @@
-version: "3.5"
+version: '3.5'
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: backend
+    container_name: backend
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    volumes:
+      - ./src:/app/src
+    networks:
+      - app_network
+
   postgres:
-    container_name: postgres_container
+    container_name: postgres
     image: postgres
     environment:
       POSTGRES_USER: admin
@@ -9,9 +26,25 @@ services:
       POSTGRES_DB: etkinlik-tech
       PGDATA: /data/postgres
     ports:
-      - "5432:5432"
-    networks:
-      - default
+      - '5432:5432'
     restart: unless-stopped
+    networks:
+      - app_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    ports:
+      - '5050:80'
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+
 networks:
-  default:
+  app_network:
+    driver: bridge

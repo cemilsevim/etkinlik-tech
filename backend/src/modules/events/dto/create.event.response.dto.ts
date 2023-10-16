@@ -1,5 +1,3 @@
-import { Events } from '../entities/events.entity';
+import { EventResponseDto } from './event.response.dto';
 
-export class CreateEventResponseDto {
-    constructor(event: Events) {}
-}
+export class CreateEventResponseDto extends EventResponseDto {}
