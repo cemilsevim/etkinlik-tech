@@ -36,6 +36,7 @@ export class Users {
     @Index()
     @Column({
         name: 'mobile_phone',
+        length: 10,
     })
     mobilePhone: string;
 
