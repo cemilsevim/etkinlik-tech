@@ -1,11 +1,23 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Events } from '../entities/events.entity';
 
 export class EventResponseDto {
+    @ApiProperty()
     id: number;
+
+    @ApiProperty()
     name: string;
+
+    @ApiProperty()
     coverImage: string;
+
+    @ApiProperty()
     description: string;
+
+    @ApiProperty()
     location: string;
+
+    @ApiProperty()
     date: Date;
 
     constructor(event: Events) {

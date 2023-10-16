@@ -23,11 +23,13 @@ import { DeleteAttendEventResponseDto } from '../dto/delete.attend.event.respons
 import { CreateFeedbackRequestDto } from '../dto/create.feedback.request.dto';
 import { CreateFeedbackResponseDto } from '../dto/create.feedback.response.dto';
 import { ListFeedbacksResponseDto } from '../dto/list.feedbacks.response.dto';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('events')
 export class EventsController {
     constructor(private eventsService: EventsService) {}
 
+    @ApiOkResponse({ type: ListEventsResponseDto })
     @UseInterceptors(AuthInterceptor)
     @Get(':time')
     async listEventsByTime(
@@ -45,6 +47,7 @@ export class EventsController {
         return response;
     }
 
+    @ApiOkResponse({ type: GetEventResponseDto })
     @Get('/detail/:eventId')
     async getEventDetail(
         @AuthUser() authUser: IAuthUser,
@@ -58,6 +61,7 @@ export class EventsController {
         return new GetEventResponseDto(result);
     }
 
+    @ApiOkResponse({ type: AttendEventResponseDto })
     @UseGuards(AuthGuard)
     @Post(':eventId/attend')
     async attendEvent(
@@ -72,6 +76,7 @@ export class EventsController {
         return new AttendEventResponseDto(result);
     }
 
+    @ApiOkResponse({ type: DeleteAttendEventResponseDto })
     @UseGuards(AuthGuard)
     @Delete(':eventId/attend')
     async deleteAttendEvent(
@@ -86,6 +91,7 @@ export class EventsController {
         return new DeleteAttendEventResponseDto(result);
     }
 
+    @ApiOkResponse({ type: ListFeedbacksResponseDto })
     @Get(':eventId/feedbacks')
     async listFeedbacksByEventId(@Param('eventId') eventId: number) {
         const result = await this.eventsService.listFeedbacksByEventId(eventId);
@@ -96,6 +102,7 @@ export class EventsController {
         return response;
     }
 
+    @ApiOkResponse({ type: CreateFeedbackResponseDto })
     @UseGuards(AuthGuard)
     @Post(':eventId/feedbacks')
     async createFeedback(
@@ -112,6 +119,7 @@ export class EventsController {
         return new CreateFeedbackResponseDto(result);
     }
 
+    @ApiOkResponse({ type: CreateEventResponseDto })
     @Post()
     async createEvent(
         @Body() eventCreateRequestDto: CreateEventRequestDto,

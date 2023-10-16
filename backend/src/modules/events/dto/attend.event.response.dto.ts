@@ -1,11 +1,21 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { EventParticipants } from '../entities/event.participants.entity';
 import { EventResponseDto } from './event.response.dto';
 
 export class AttendEventResponseDto {
+    @ApiProperty()
     id: number;
+
+    @ApiProperty()
     eventId: number;
+
+    @ApiProperty()
     willAttend: boolean;
+
+    @ApiProperty()
     attended: boolean;
+
+    @ApiProperty()
     event: EventResponseDto;
 
     constructor(eventParticipant: EventParticipants) {

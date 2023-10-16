@@ -1,8 +1,10 @@
 import { UserResponseDto } from 'src/modules/users/dto/user.response.dto';
 import { FeedbackResponseDto } from './feedback.response.dto';
 import { EventFeedbacks } from '../entities/event.feedbacks.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ListFeedbacksResponseDto extends FeedbackResponseDto {
+    @ApiProperty()
     user: {
         id: number;
         firstName: string;

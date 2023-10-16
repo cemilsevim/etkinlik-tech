@@ -8,6 +8,7 @@ import { EventParticipantsService } from 'src/modules/events/services/event.part
 import { EventFeedbacksService } from 'src/modules/events/services/event.feedbacks.service';
 import { ListEventFeedbacksResponseDto } from '../dto/list.event.feedbacks.response.dto';
 import { ListAttendedEventsResponseDto } from '../dto/list.attended.events.response.dto';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
 @Controller('profile')
@@ -18,11 +19,13 @@ export class ProfileController {
         private eventFeedbackService: EventFeedbacksService,
     ) {}
 
+    @ApiOkResponse({ type: GetProfileResponseDto })
     @Get()
     getProfile(@AuthUser() authUser: IAuthUser): GetProfileResponseDto {
         return new GetProfileResponseDto(authUser.user);
     }
 
+    @ApiOkResponse({ type: ListAttendedEventsResponseDto })
     @Get('events/attended')
     async listAttendedEvents(@AuthUser() authUser: IAuthUser): Promise<any> {
         const result =
@@ -36,6 +39,7 @@ export class ProfileController {
         return response;
     }
 
+    @ApiOkResponse({ type: ListEventFeedbacksResponseDto })
     @Get('events/feedbacks')
     async listEventFeedbacks(
         @AuthUser() authUser: IAuthUser,
