@@ -16,7 +16,9 @@ export class Events {
     @Column()
     name: string;
 
-    @Column()
+    @Column({
+        name: 'cover_image',
+    })
     coverImage: string;
 
     @Index()

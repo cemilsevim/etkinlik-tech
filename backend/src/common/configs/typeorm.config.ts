@@ -1,11 +1,6 @@
 import { registerAs } from '@nestjs/config';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { config as dotenvConfig } from 'dotenv';
-import { AddInitData1697444087414 } from 'src/migrations/1697444087414-add-init-data';
-import { EventFeedbacks } from 'src/modules/events/entities/event.feedbacks.entity';
-import { EventParticipants } from 'src/modules/events/entities/event.participants.entity';
-import { Events } from 'src/modules/events/entities/events.entity';
-import { Users } from 'src/modules/users/entities/users.entity';
+import { join } from 'path';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 dotenvConfig({ path: '.env' });
@@ -17,7 +12,13 @@ const config = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Events, EventParticipants, Users, EventFeedbacks],
+    entities: ['../../modules/**/*.entity{.ts,.js}'],
+    migrations: [join(__dirname, '../../migrations/*{.ts,.js}')],
+    cli: {
+        entitiesDir: 'src',
+        migrationsDir: 'src/migrations',
+    },
+    autoLoadEntities: true,
     synchronize: true,
     dateStrings: ['timestamp without time zone'],
     timezone: 'UTC',
